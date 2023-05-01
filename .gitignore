@@ -25,3 +25,4 @@ coverage/
 .vscode/
 .cache/
 dist/
+.csv
