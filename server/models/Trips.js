@@ -1,40 +1,42 @@
 const mongoose = require("mongoose");
 
-const TripSchema = new mongoose.Schema({
+const tripSchema = new mongoose.Schema({
     departure: {
-        type: Date,
+        type: String,
         required: true
     },
     return: {
-        type: Date,
-        required: true
-    },
-    departure_station_id: {
-        type: Number,
-        required: true
-    },
-    departure_station_name: {
         type: String,
         required: true
     },
-    return_station_id: {
-        type: Number,
-        required: true
-    },
-    return_station_name: {
+    departureStationId: {
         type: String,
         required: true
     },
-    covered_distance_m: {
-        type: Number,
+    departureStationName  : {
+        type: String,
         required: true
     },
-    duration_sec: {
-        type: Number,
+    returnStationId: {
+        type: String,
         required: true
+    },
+    returnStationName: {
+        type: String,
+        required: true
+    },
+    coveredDistanceM: {
+        type: String,
+        required: true,
+        min: 10
+    },
+    durationSec: {
+        type: String,
+        required: true,
+        min: 10
     }
 });
 
-const TripModel = mongoose.model("trips", TripSchema);
+const Trip = mongoose.model("Trip", tripSchema);
 
-module.exports = TripModel;
+module.exports = Trip;
