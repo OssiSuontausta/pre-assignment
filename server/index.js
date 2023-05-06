@@ -1,10 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const fs = require("fs");
-const csv = require("csv-parser");
+//const databaseImportTrips = require("./db_imports/importTrips.js");
+//const databaseImportStations = require("./db_imports/importStations.js");
 
-const Trip = require("./models/trips");
+/**** ONLY CALL THESE IF YOU NEED TO IMPORT CSV FILES TO AN EMPTY DATABASE! **********/
+//databaseImportTrips();
+//databaseImportStations();
 
 const app = express();
 app.use(express.json());
@@ -15,58 +17,12 @@ const uri = process.env.MONGODB_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const connection = mongoose.connection;
+connection.on("error", console.error.bind(console, "connection error: "));
 connection.once("open", () => {
-    console.log("Connected to database!");
+  console.log("Connected to database!");
 });
-
-/*INITIAL DATA IMPORT*******************************************************************/
-
-/*const csvFiles = ["../2021-05.csv", "../2021-06.csv", "../2021-07.csv"];
-csvFiles.forEach((filename) => {
-  let dataArray = [];
-
-  fs.createReadStream(`${filename}`)
-    .pipe(csv({ headers: ["departure", "return", "departureStationId", "departureStationName", "returnStationId", "returnStationName", "coveredDistanceM", "durationSec"] }))
-    .on('data', (row) => {
-      // Filter out rows with distance less than 10 or duration less than 10
-      if (row.coveredDistanceM < 10 || row.durationSec < 10) {
-        return;
-      }
-
-      // Create a new instance of your model using the modified row data
-      const data = new Trip({
-        departure: row.departure,
-        return: row.return,
-        departureStationId: row.departureStationId,
-        departureStationName: row.departureStationName,
-        returnStationId: row.returnStationId,
-        returnStationName: row.returnStationName,
-        coveredDistanceM: row.coveredDistanceM,
-        durationSec: row.durationSec
-      });
-
-      // Store the data in an array
-      dataArray.push(data);
-
-      // If the batch size is reached, insert the data into MongoDB
-      if (dataArray.length === 10000) {
-        Trip.insertMany(dataArray)
-            .then(() => dataArray = [])
-            .catch(err => console.log(err))
-      }
-    })
-    .on('end', () => {
-      // Insert any remaining data into MongoDB
-      if (dataArray.length > 0) {
-        Trip.insertMany(dataArray)
-            .catch(err => console.log(err))
-      }
-
-      console.log(`${filename} successfully processed`);
-    });
-});*/
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-     console.log(`Server running on port ${PORT}!`);
+  console.log(`Server running on port ${PORT}!`);
 });
