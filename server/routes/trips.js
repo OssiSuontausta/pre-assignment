@@ -1,9 +1,7 @@
 const express = require("express");
-
 const router = express.Router();
+const {getTrips} = require("../controllers/tripController.js");
 
-router.get("/", (req, res) => {
-  res.json({mssg: "GET all trips"});
-});
+router.get("/", getTrips);
 
 module.exports = router;
