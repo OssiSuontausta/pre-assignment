@@ -1,11 +1,11 @@
 import { CssBaseline } from "@mui/material";
-import RouterComponent from "./components/RouterComponent";
+import RouterComponent from "../src/components/RouterComponent";
 
 const App = () => {
 
   return (
     <>
-      <CssBaseline/>
+      <CssBaseline />
       <RouterComponent/>
     </>
   );
