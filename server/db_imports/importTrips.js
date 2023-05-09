@@ -48,15 +48,14 @@ const databaseImportTrips = async () => {
         coveredDistanceM: parseInt(row.coveredDistanceM),
         durationSec: parseInt(row.durationSec),
       });
-
+    
       dataArray.push(data);
 
       if (dataArray.length === 500000) {
-        console.log(`500000 reached ${times} times`);
+        console.log(`500000 reached ${times} times, processing...`);
         try {
           await Trip.insertMany(dataArray);
-          console.log(`500000 inserted ${times} times`);
-          console.log(process.memoryUsage());
+          console.log(`500000 inserted ${times} times, processing...`);
           times++;
           dataArray = [];
         } catch (err) {
@@ -66,12 +65,11 @@ const databaseImportTrips = async () => {
     }
 
     if (dataArray.length > 0) {
-      console.log(`${dataArray.length} rows remaining...`);
+      console.log(`${dataArray.length} rows remaining, processing...`);
       try {
         await Trip.insertMany(dataArray);
-        console.log("Remaining row inserted");
-        console.log(dataArray.length);
-        console.log(`${filename} successfully processed`);
+        console.log("Remaining rows inserted...processing...");
+        console.log(`${filename} successfully processed!`);
       } catch (err) {
         console.error(err);
       }

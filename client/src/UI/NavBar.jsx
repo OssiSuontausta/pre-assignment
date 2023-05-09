@@ -1,20 +1,11 @@
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import { Grid } from "@mui/material";
-import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
-import { useMediaQuery } from "@mui/material";
+import { Grid, Link } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
 
 const NavBar = () => {
-
-  const smallScreen = useMediaQuery("(max-width: 480px)");
-
-  const buttonSize = smallScreen ? "small" : "large";
-  const buttonStyles = {
-    color: "white"
-  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -29,21 +20,21 @@ const NavBar = () => {
             columns={{ xs: 6, sm: 10, md: 12 }}
           >
             <Grid item>
-              <Link to="/">
-                <Button 
-                  startIcon={<DirectionsBikeIcon />}
-                  size={buttonSize} 
-                  sx={{ color: "white", fontWeight: "bold", fontSize: "1.2rem" }} >
+              <DirectionsBikeIcon />
+            </Grid>
+            <Grid item sx={{marginRight: "5%"}}>
+              <Link component={RouterLink} to="/" color="inherit" underline="none">
                     Helsinki city bike app
-                </Button>
               </Link>
             </Grid>
             <Grid item>
-              <Link to="/stations">
-                <Button size={buttonSize} sx={buttonStyles}>Stations</Button>
+              <Link component={RouterLink} to="/stations" color="inherit">
+                Stations
               </Link>
-              <Link to="/trips">
-                <Button size={buttonSize} sx={buttonStyles}>Trips</Button>
+            </Grid>
+            <Grid item>
+              <Link component={RouterLink} to="/trips" color="inherit">
+                Trips
               </Link>
             </Grid>
           </Grid>

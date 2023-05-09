@@ -52,10 +52,10 @@ const databaseImportStations = async () => {
       dataArray.push(data);
 
       if (dataArray.length === 500000) {
-        console.log(`500000 reached ${times} times`);
+        console.log(`500000 reached ${times} times, processing...`);
         try {
           await Station.insertMany(dataArray);
-          console.log(`500000 inserted ${times} times`);
+          console.log(`500000 inserted ${times} times, processing...`);
           console.log(process.memoryUsage());
           times++;
           dataArray = [];
@@ -69,9 +69,8 @@ const databaseImportStations = async () => {
       console.log(`${dataArray.length} rows remaining...`);
       try {
         await Station.insertMany(dataArray);
-        console.log("Remaining row inserted");
-        console.log(dataArray.length);
-        console.log(`${filename} successfully processed`);
+        console.log("Remaining rows inserted, processing...");
+        console.log(`${filename} successfully processed!`);
       } catch (err) {
         console.error(err);
       }
