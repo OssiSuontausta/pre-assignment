@@ -4,7 +4,9 @@ const mongoose = require("mongoose");
 const getStations = async (req, res) => {
 
   try {
-    const stations = await Station.find({}).sort({name: 1});
+    const stations = await Station
+      .find({})
+      .sort({name: 1});
     res.status(200).json(stations);
   }catch (err) {
     res.status(404).json({error: err.message});

@@ -20,7 +20,7 @@ const NavBar = () => {
             columns={{ xs: 6, sm: 10, md: 12 }}
           >
             <Grid item>
-              <DirectionsBikeIcon />
+              <DirectionsBikeIcon  color="secondary" />
             </Grid>
             <Grid item sx={{marginRight: "5%"}}>
               <Link component={RouterLink} to="/" color="inherit" underline="none">
