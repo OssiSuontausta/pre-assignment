@@ -27,15 +27,11 @@ const databaseImportTrips = async () => {
         skipLines: 1,
         separator: ",",
         strict: false,
-        quote: "",
       })
     );
     console.log(`Processing started for ${filename}`);
     for await (const row of readStream) {
       if (row.coveredDistanceM < 10 || row.durationSec < 10) {
-        continue;
-      }
-      if (!isValidRow(row)) {
         continue;
       }
       if (isNaN(row.coveredDistanceM) || isNaN(row.durationSec)) {
@@ -75,14 +71,6 @@ const databaseImportTrips = async () => {
       }
     }
   }
-};
-const isValidRow = (row) => {
-  return (
-    row.departureStationName &&
-    row.returnStationName &&
-    row.coveredDistanceM &&
-    row.durationSec
-  );
 };
 
 module.exports = databaseImportTrips;

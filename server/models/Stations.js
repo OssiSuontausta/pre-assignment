@@ -11,10 +11,10 @@ const stationSchema = new mongoose.Schema({
     type: String,
   },
   x: {
-    type: String,
+    type: Number,
   },
   y: {
-    type: String,
+    type: Number,
   },
 });
 

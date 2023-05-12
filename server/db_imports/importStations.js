@@ -24,20 +24,20 @@ const databaseImportStations = async () => {
           "addressSWE",
           "cityFIN",
           "citySWE",
-          "opreator",
+          "operator",
           "capacity",
           "x",
           "y",
         ],
         skipLines: 1,
-        separator: ",",
-        strict: false,
-        quote: "",
+        separator: ","
       })
     );
     console.log(`Processing started for ${filename}`);
     for await (const row of readStream) {
-      if (!isValidRow(row)) {
+      if (isNaN(row.x) || isNaN(row.y)) {
+        row.y = 0;
+        row.x = 0;
         continue;
       }
 
@@ -76,9 +76,6 @@ const databaseImportStations = async () => {
       }
     }
   }
-};
-const isValidRow = (row) => {
-  return row.nameFIN && row.addressFIN && row.cityFIN && row.x && row.y;
 };
 
 module.exports = databaseImportStations;

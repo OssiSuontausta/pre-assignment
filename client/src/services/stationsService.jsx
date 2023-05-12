@@ -6,3 +6,8 @@ export const getAll = () => {
   const request = axios.get(`${baseUrl}`);
   return request.then(res => res.data);
 };
+
+export const getOneStation = (id) => {
+  const request = axios.get(`${baseUrl}/${id}`);
+  return request.then(res => res.data);
+};

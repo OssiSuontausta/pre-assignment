@@ -5,12 +5,12 @@ import theme from "./theme";
 const App = () => {
 
   return (
-    <>
+    <div className="App">
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <RouterComponent/>
       </ThemeProvider>
-    </>
+    </div>
   );
 };
 

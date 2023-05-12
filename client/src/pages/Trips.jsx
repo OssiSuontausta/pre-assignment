@@ -11,16 +11,29 @@ const Trips = () => {
     tripsService
       .getAll()
       .then(res => {
-        setTotalPages(res[1]); 
+        setTotalPages(Math.floor(res[1])); 
         setTrips(res[0]);
       })
       .catch(err => console.log(err));
   }, []);
 
   return (
- 
-    <p></p>
-
+    <div>
+      <div>
+        <ol>
+          {trips.map(trip => 
+            <li>
+              {trip.departureStationName}, 
+              {trip.returnStationName}, 
+              {trip.coveredDistanceM}, 
+              {trip.durationSec}
+            </li>)}
+        </ol>
+      </div>
+      <div>
+        <p>{totalPages}</p>
+      </div>
+    </div>
   );
 };
 

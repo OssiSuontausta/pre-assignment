@@ -41,16 +41,21 @@ db.once("open", async () => {
   try {
     const tripsCollection = db.collection("trips");
     const imported = await tripsCollection.findOne({ [csvImportedFlagKey]: { $exists: true } });
+
     if (imported && imported[csvImportedFlagKey]) {
-      await Trip.createIndexes();
-      console.log("CSV files alreaddy imported, skipping import!");
+      const createIndexes = async() => {
+        await Trip.createIndexes();
+        console.log("CSV files alreaddy imported, skipping import!");
+        console.log("Server started and ready!");
+      };
+      createIndexes();
+
     }else {
-      await databaseImportStations(), databaseImportTrips();
+      await databaseImportStations();
+      await databaseImportTrips();
       tripsCollection.updateOne({}, { $set: { [csvImportedFlagKey]: true } }, { upsert: true });
-      await Trip.createIndexes();
+      Trip.createIndexes();
     }
-    console.log("Server started and ready!");
-    
   }catch (err) {
     console.log(err);
     process.exit(1);
