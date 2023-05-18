@@ -44,7 +44,7 @@ const databaseImportStations = async () => {
       const data = new Station({
         name: row.nameFIN.trim(),
         address: row.addressFIN.trim(),
-        city: row.cityFIN.trim(),
+        city: row.cityFIN.trim() !== "" ? row.cityFIN.trim() : "Helsinki",
         x: row.x,
         y: row.y,
       });

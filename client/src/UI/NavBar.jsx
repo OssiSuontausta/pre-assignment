@@ -24,7 +24,7 @@ const NavBar = () => {
             </Grid>
             <Grid item sx={{marginRight: "5%"}}>
               <Link component={RouterLink} to="/" color="inherit" underline="none">
-                    Helsinki city bike app
+                Helsinki city bike app
               </Link>
             </Grid>
             <Grid item>
