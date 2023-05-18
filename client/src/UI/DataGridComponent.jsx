@@ -36,6 +36,7 @@ const DataGridComponent = ({
         onPageChange={onPageChange ? onPageChange : null}
         rowCount={rowCount ? rowCount : null}
         pageSizeOptions={[10]}
+        disableRowSelectionOnClick
         disableColumnMenu
         onPaginationModelChange={onPaginationModelChange ? onPaginationModelChange : null}
         sx={{

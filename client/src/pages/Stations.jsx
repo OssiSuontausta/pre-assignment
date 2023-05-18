@@ -12,11 +12,11 @@ const Stations = () => {
   useEffect(() => {
     stationsService
       .getAll()
-      .catch(err => console.log(err))
       .then(res => {
         setStations(res);
         setLoading(false);
-      });
+      })
+      .catch(err => console.log(err));
   }, []);
 
   const handleRowClick = (e) => {

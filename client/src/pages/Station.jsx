@@ -35,7 +35,7 @@ const Station = () => {
   return (
     <Box sx={{
       flexGrow: 1, 
-      height: "80vh", 
+      height: "90vh", 
       width: "100vw", 
       display: "flex", 
       alignItems: "center", 
@@ -61,12 +61,12 @@ const Station = () => {
             </Typography>
           </Grid>
           <Grid item xs={12} lg={6}>
-            <Typography variant="h6">
+            <Typography variant="body1">
                 Number of departing trips: {departingTrips}
             </Typography>
           </Grid>
           <Grid item xs={12} lg={6}>
-            <Typography variant="h6">
+            <Typography variant="body1">
                 Number of returning trips: {returningTrips}
             </Typography>
           </Grid>
