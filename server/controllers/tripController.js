@@ -17,6 +17,31 @@ const getTrips = async (req, res) => {
   }
 };
 
+const getDepartingTrips = async (req, res) => {
+  const station = req.query.station;
+
+  try {
+    const trips = await Trip
+      .find({departureStationName: station});
+    res.status(200).json(trips.length);
+  }catch (err) {
+    res.status(400).json({error: err.message});
+  }
+};
+const getReturningTrips = async (req, res) => {
+  const station = req.query.station;
+
+  try {
+    const trips = await Trip
+      .find({returnStationName: station});
+    res.status(200).json(trips.length);
+  }catch (err) {
+    res.status(400).json({error: err.message});
+  }
+};
+
 module.exports = {
-  getTrips
+  getTrips,
+  getDepartingTrips,
+  getReturningTrips
 };
