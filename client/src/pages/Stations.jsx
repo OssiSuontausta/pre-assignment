@@ -38,7 +38,8 @@ const Stations = () => {
       minWidth: 150, 
       flex: 0.8
     },
-    {field: "city", 
+    {
+      field: "city", 
       headerName: "City", 
       headerClassName: "grid-header",
       minWidth: 50, 
