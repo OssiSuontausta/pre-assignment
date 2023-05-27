@@ -1,0 +1,31 @@
+version: "2"
+services:
+  react-app:
+    image: react-app
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    networks: 
+      - citybike-app
+  api-server: 
+    image: api-server
+    ports:
+      - "3001:3001"
+    networks:
+      - citybike-app
+    depends_on: 
+      - mongo
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    networks:
+      - citybike-app
+    volumes:
+      - mongo-db:/data/db
+networks:
+  citybike-app:
+    driver: bridge
+volumes:
+  mongo-db:
+    driver: local
