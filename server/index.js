@@ -27,7 +27,7 @@ app.use("/api/stations", stationRoutes);
 
 //Connect to db
 require("dotenv").config();
-const uri = process.env.MONGODB_URI || "mongodb://localhost:27017/citybike_db";
+const uri = process.env.MONGODB_URI || "mongodb://mongo:27017/citybike_db";
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
